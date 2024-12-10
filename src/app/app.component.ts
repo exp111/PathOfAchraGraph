@@ -84,7 +84,7 @@ export class AppComponent implements AfterViewInit {
           // check if the power has a effect that is triggered
           for (let otherEffect of other.effects) {
             if (otherEffect.isTriggeredBy(effect)) {
-              elements.push(edge(`On ${effect.triggers.map(e => e.toString()).join("||")} -> ${effect.effects.map(e => e.toString()).join(",")}: ${effect.text}`, power.name, other.name));
+              elements.push(edge(effect.toString(), power.name, other.name));
             }
           }
         }
