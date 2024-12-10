@@ -2,9 +2,8 @@ import {Power} from '../model/power';
 import {Triggers} from '../model/trigger';
 
 export const Powers: Power[] = [
-  {
-    name: "Hemokinesis",
-    effects: [
+  new Power("Hemokinesis",
+    [
       {
         trigger: Triggers.Hit,
         effect: Triggers.ApplyStatus,
@@ -15,11 +14,10 @@ export const Powers: Power[] = [
         effect: Triggers.DealDamage,
         text: "30 * skill level blood damage"
       }
-    ]
-  },
-  {
-    name: "Toxokinesis",
-    effects: [
+    ]),
+
+  new Power("Toxokinesis",
+    [
       {
         trigger: Triggers.Attack,
         effect: Triggers.DealDamage, // Poison
@@ -35,11 +33,9 @@ export const Powers: Power[] = [
         effect: Triggers.DealDamage, // poison
         text: "30 * skill level poison damage"
       },
-    ]
-  },
-  {
-    name: "Poison Skin",
-    effects: [
+    ]),
+  new Power("Poison Skin",
+    [
       {
         trigger: Triggers.BeingAttacked,
         effect: Triggers.ApplyStatus, // sickness
@@ -50,6 +46,5 @@ export const Powers: Power[] = [
         effect: Triggers.Heal,
         text: "2 * skill level heal yourself"
       }
-    ]
-  }
+    ])
 ]
