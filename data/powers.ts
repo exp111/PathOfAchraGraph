@@ -1,4 +1,4 @@
-import {Power} from '../model/power';
+import {Power, PowerType} from '../model/power';
 import {Event} from '../model/events/event';
 import {HitTrigger} from '../model/events/trigger/hitTrigger';
 import {ApplyStatusTrigger} from '../model/events/trigger/applyStatusTrigger';
@@ -18,6 +18,7 @@ import {EntranceTrigger} from '../model/events/trigger/entranceTrigger';
 
 export const Powers: Power[] = [
   new Power("Hemokinesis",
+    PowerType.Blood,
     [
       new Event(
         [new HitTrigger()],
@@ -30,6 +31,7 @@ export const Powers: Power[] = [
     ]),
 
   new Power("Toxokinesis",
+    PowerType.Poison,
     [
       new Event(
         [new AttackTrigger()],
@@ -45,6 +47,7 @@ export const Powers: Power[] = [
         "30 * skill level poison damage")
     ]),
   new Power("Poison Skin",
+    PowerType.Poison,
     [
       new Event(
         [new BeingAttackedTrigger()],
@@ -56,6 +59,7 @@ export const Powers: Power[] = [
         "2 * skill level heal yourself")
     ]),
   new Power("Morbumancy",
+    PowerType.Poison,
     [
       new Event(
         [new PrayerTrigger(), new StandStillTrigger()],
@@ -63,6 +67,7 @@ export const Powers: Power[] = [
         "10 Sickness")
     ]),
   new Power("Plague Chant",
+    PowerType.Poison,
     [
       new Event(
         [new GameTurnTrigger(), new PrayerTrigger()],
@@ -74,6 +79,7 @@ export const Powers: Power[] = [
         "2 * skill level plague")
     ]),
   new Power("Acidify",
+    PowerType.Poison,
     [
       new Event(
         [new AttackTrigger(), new SummonTrigger()],
@@ -84,7 +90,8 @@ export const Powers: Power[] = [
         [new DealDamageTrigger(DamageType.Poison)],
         "10 * skill level poison")
     ]),
-  new Power("BurningOoze",
+  new Power("Burning Ooze",
+    PowerType.Poison,
     [
       new Event(
         [new AllyAttackTrigger()],
@@ -96,6 +103,7 @@ export const Powers: Power[] = [
         "skill level * ooze")
     ]),
   new Power("Oozemancy",
+    PowerType.Poison,
     [
       new Event(
         [new SummonTrigger()],
@@ -107,6 +115,7 @@ export const Powers: Power[] = [
         "skill level * ooze")
     ]),
   new Power("Poison Familiar",
+    PowerType.Poison,
     [
       new Event(
         [new EntranceTrigger(), new LearnTrigger()],
@@ -118,6 +127,7 @@ export const Powers: Power[] = [
         "tsuchigumo deals hit * poison")
     ]),
   new Power("Snakeform",
+    PowerType.Poison,
     [
       new Event(
         [new ApplyStatusTrigger(Status.Sickness)],
