@@ -38,7 +38,9 @@ export class AppComponent implements AfterViewInit {
         {
           selector: 'edge',
           style: {
-            'label': 'data(id)'
+            "curve-style": "bezier",
+            'label': 'data(id)',
+            "target-arrow-shape": "triangle"
           }
         }
       ]
