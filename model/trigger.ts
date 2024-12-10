@@ -7,12 +7,26 @@ export enum Triggers {
   BeingAttacked
 }
 
-export interface Trigger {
-  // how this event is triggered
-  trigger: Triggers;
-  // what this event does
-  effect: Triggers;
-  // text description of the effect
-  text: string;
+export class TriggerCondition {
+
+  constructor(public trigger: Triggers) {
+  }
+}
+
+export class Trigger {
   //TODO: how to differentiate between Adjacent/NonAdjacent hit, dmg types
+  /**
+   *
+   * @param trigger how this event is triggered
+   * @param effect what this event does
+   * @param text text description of the effect
+   */
+  constructor(public trigger: Triggers,
+              public effect: Triggers,
+              public text: string) {
+  }
+
+  isTriggeredBy(trigger: TriggerCondition) {
+
+  }
 }
