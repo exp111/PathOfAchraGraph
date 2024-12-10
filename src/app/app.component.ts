@@ -77,7 +77,7 @@ export class AppComponent implements AfterViewInit {
           for (let otherEffect of other.effects) {
             //TODO: outsource into common method
             if (otherEffect.trigger == effect.effect) {
-              elements.push(edge(`On ${Triggers[effect.trigger]}: ${effect.text}`, power.name, other.name));
+              elements.push(edge(`On ${Triggers[effect.trigger]} -> ${Triggers[effect.effect]}: ${effect.text}`, power.name, other.name));
             }
           }
         }
