@@ -14,6 +14,7 @@ export class DealDamageTrigger extends BaseTrigger {
   override isTriggeredBy(trigger: BaseTrigger): boolean {
     return super.isTriggeredBy(trigger) &&
       this.damageType == (<DealDamageTrigger>trigger).damageType &&
-      this.self == (<DealDamageTrigger>trigger).self;
+      // if the trigger is always triggered it doesnt matter if we did the damage, else it is
+      (!this.self || this.self == (<DealDamageTrigger>trigger).self);
   }
 }

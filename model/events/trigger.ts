@@ -10,7 +10,8 @@ export enum Triggers {
   Block,
   ShrugOff,
   GameTurn,
-  AllyAttack
+  AllyAttack,
+  Summon
 }
 
 export enum Status {
