@@ -4,7 +4,6 @@ import {Power} from '../../model/power';
 import {Powers} from '../../data/powers';
 import cytoscape, {ElementDefinition} from 'cytoscape';
 import {edge, node} from '../../model/cytoscape/node';
-import {Triggers} from '../../model/trigger';
 
 @Component({
   selector: 'app-root',
@@ -75,9 +74,8 @@ export class AppComponent implements AfterViewInit {
         for (let other of powers) {
           // check if the power has a effect that is triggered
           for (let otherEffect of other.effects) {
-            //TODO: outsource into common method
-            if (otherEffect.trigger == effect.effect) {
-              elements.push(edge(`On ${Triggers[effect.trigger]} -> ${Triggers[effect.effect]}: ${effect.text}`, power.name, other.name));
+            if (otherEffect.isTriggeredBy(effect)) {
+              elements.push(edge(`On ${effect.trigger.toString()} -> ${effect.effect.toString()}: ${effect.text}`, power.name, other.name));
             }
           }
         }
