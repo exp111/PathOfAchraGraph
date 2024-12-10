@@ -11,18 +11,24 @@ export enum Triggers {
   ShrugOff,
   GameTurn,
   AllyAttack,
-  Summon
+  Summon,
+  DivineIntervention,
+  Entrance,
+  Learn
 }
 
 export enum Status {
   Bleed,
   Sickness,
-  Plague
+  Plague,
+  Corrosion,
+  Snakeform
 }
 
 export enum DamageType {
   Blood,
-  Poison
+  Poison,
+  Fire
 }
 
 export abstract class BaseTrigger {

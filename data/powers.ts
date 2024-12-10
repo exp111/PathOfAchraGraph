@@ -11,6 +11,10 @@ import {PrayerTrigger} from '../model/events/trigger/prayerTrigger';
 import {StandStillTrigger} from '../model/events/trigger/standStillTrigger';
 import {GameTurnTrigger} from '../model/events/trigger/gameTurnTrigger';
 import {AllyAttackTrigger} from '../model/events/trigger/allyAttackTrigger';
+import {SummonTrigger} from '../model/events/trigger/summonTrigger';
+import {DivineInterventionTrigger} from '../model/events/trigger/divineInterventionTrigger';
+import {LearnTrigger} from '../model/events/trigger/learnTrigger';
+import {EntranceTrigger} from '../model/events/trigger/entranceTrigger';
 
 export const Powers: Power[] = [
   new Power("Hemokinesis",
@@ -63,10 +67,61 @@ export const Powers: Power[] = [
       new Event(
         [new GameTurnTrigger(), new PrayerTrigger()],
         [new DealDamageTrigger(DamageType.Poison, true), new ApplyStatusTrigger(Status.Plague)],
-        "25 damage, 10 Sickness"),
+        "25 damage, 10 sickness"),
       new Event(
         [new AllyAttackTrigger()],
         [new ApplyStatusTrigger(Status.Plague)],
         "2 * skill level plague")
+    ]),
+  new Power("Acidify",
+    [
+      new Event(
+        [new AttackTrigger(), new SummonTrigger()],
+        [new ApplyStatusTrigger(Status.Corrosion)],
+        "5 * skill level sickness"),
+      new Event(
+        [new DivineInterventionTrigger()],
+        [new DealDamageTrigger(DamageType.Poison)],
+        "10 * skill level poison")
+    ]),
+  new Power("BurningOoze",
+    [
+      new Event(
+        [new AllyAttackTrigger()],
+        [new DealDamageTrigger(DamageType.Poison), new DealDamageTrigger(DamageType.Fire)],
+        "10 * skill level"),
+      new Event(
+        [new EntranceTrigger(), new LearnTrigger()],
+        [new SummonTrigger()],
+        "skill level * ooze")
+    ]),
+  new Power("Oozemancy",
+    [
+      new Event(
+        [new SummonTrigger()],
+        [new DealDamageTrigger(DamageType.Poison)],
+        "20 * number of allied oozes"),
+      new Event(
+        [new EntranceTrigger(), new LearnTrigger()],
+        [new SummonTrigger()],
+        "skill level * ooze")
+    ]),
+  new Power("Poison Familiar",
+    [
+      new Event(
+        [new EntranceTrigger(), new LearnTrigger()],
+        [new SummonTrigger()],
+        "Tsuchigumo"),
+      new Event(
+        [new ApplyStatusTrigger(Status.Sickness), new ApplyStatusTrigger(Status.Corrosion)],
+        [new DealDamageTrigger(DamageType.Poison)],
+        "tsuchigumo deals hit * poison")
+    ]),
+  new Power("Snakeform",
+    [
+      new Event(
+        [new ApplyStatusTrigger(Status.Sickness)],
+        [new ApplyStatusTrigger(Status.Snakeform)],
+        "2 * skill level"),
     ]),
 ]
