@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {RouterOutlet} from '@angular/router';
 import {Power} from '../../model/power';
 import {Powers} from '../../data/powers';
 import cytoscape from 'cytoscape';
+import {edge, node} from '../../model/cytoscape/Node';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import cytoscape from 'cytoscape';
 })
 export class AppComponent implements AfterViewInit {
   title = 'PathOfAchraGraph';
-  powers = new Array<Power|null>(8).fill(null);
+  powers = new Array<Power | null>(8).fill(null);
   cytoscape!: cytoscape.Core;
 
   @ViewChild("cytoscape")
@@ -35,8 +36,6 @@ export class AppComponent implements AfterViewInit {
         }
       ]
     });
-    let a = this.cytoscape.add({data: {id: "a"}});
-    this.cytoscape.center(a);
   }
 
   powerClicked(index: number) {
@@ -55,6 +54,19 @@ export class AppComponent implements AfterViewInit {
   }
 
   buildGraph() {
-
+    // clear graph
+    this.cytoscape.elements().remove();
+    // add new ones
+    this.cytoscape.add([
+      node("a"),
+      node("b"),
+      edge("edge", "a", "b"),
+      edge("edge2", "a", "a"),
+    ]);
+    // arrange them
+    let layout = this.cytoscape.layout({
+      name: "breadthfirst"
+    });
+    layout.run();
   }
 }
