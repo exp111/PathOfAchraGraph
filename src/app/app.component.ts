@@ -2,8 +2,9 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {Power} from '../../model/power';
 import {Powers} from '../../data/powers';
-import cytoscape from 'cytoscape';
+import cytoscape, {ElementDefinition} from 'cytoscape';
 import {edge, node} from '../../model/cytoscape/Node';
+import {Triggers} from '../../model/trigger';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,12 @@ export class AppComponent implements AfterViewInit {
             'background-color': '#666',
             'label': 'data(id)'
           }
+        },
+        {
+          selector: 'edge',
+          style: {
+            'label': 'data(id)'
+          }
         }
       ]
     });
@@ -53,16 +60,36 @@ export class AppComponent implements AfterViewInit {
     this.powers[i] = filtered[Math.floor(Math.random() * filtered.length)];
   }
 
+  getElementsFromPowers(): ElementDefinition[] {
+    let elements = [];
+    // filter out null powers
+    let powers = this.powers.filter(p => p).map(p => p!);
+    for (let power of powers) {
+      // push node
+      elements.push(node(power.name));
+      // push edges for each effect
+      for (let effect of power.effects) {
+        // check if any other power is affected from this effect
+        for (let other of powers) {
+          // check if the power has a effect that is triggered
+          for (let otherEffect of other.effects) {
+            //TODO: outsource into common method
+            if (otherEffect.trigger == effect.effect) {
+              elements.push(edge(`On ${Triggers[effect.trigger]}: ${effect.text}`, power.name, other.name));
+            }
+          }
+        }
+      }
+    }
+    return elements;
+  }
+
   buildGraph() {
     // clear graph
     this.cytoscape.elements().remove();
     // add new ones
-    this.cytoscape.add([
-      node("a"),
-      node("b"),
-      edge("edge", "a", "b"),
-      edge("edge2", "a", "a"),
-    ]);
+    //TODO: select either power or trigger
+    this.cytoscape.add(this.getElementsFromPowers());
     // arrange them
     let layout = this.cytoscape.layout({
       name: "breadthfirst"
