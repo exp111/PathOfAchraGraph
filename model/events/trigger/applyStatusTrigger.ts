@@ -14,3 +14,4 @@ export class ApplyStatusTrigger extends BaseTrigger {
     return super.isTriggeredBy(trigger) && this.status == (<ApplyStatusTrigger>trigger).status;
   }
 }
+

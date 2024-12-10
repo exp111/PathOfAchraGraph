@@ -61,6 +61,15 @@ export class AppComponent implements AfterViewInit {
     this.powers[i] = filtered[Math.floor(Math.random() * filtered.length)];
   }
 
+  randomizeAllPowers() {
+    // clear array
+    this.powers.fill(null);
+    // fill with random powers
+    for (let i = 0; i < this.powers.length; i++) {
+      this.addRandomPower();
+    }
+  }
+
   getElementsFromPowers(): ElementDefinition[] {
     let elements = [];
     // filter out null powers
@@ -75,7 +84,7 @@ export class AppComponent implements AfterViewInit {
           // check if the power has a effect that is triggered
           for (let otherEffect of other.effects) {
             if (otherEffect.isTriggeredBy(effect)) {
-              elements.push(edge(`On ${effect.trigger.toString()} -> ${effect.effect.toString()}: ${effect.text}`, power.name, other.name));
+              elements.push(edge(`On ${effect.triggers.map(e => e.toString()).join("||")} -> ${effect.effects.map(e => e.toString()).join(",")}: ${effect.text}`, power.name, other.name));
             }
           }
         }

@@ -4,12 +4,19 @@ export enum Triggers {
   ApplyStatus,
   DealDamage,
   Attack,
-  BeingAttacked
+  BeingAttacked,
+  Prayer,
+  StandStill,
+  Block,
+  ShrugOff,
+  GameTurn,
+  AllyAttack
 }
 
 export enum Status {
   Bleed,
-  Sickness
+  Sickness,
+  Plague
 }
 
 export enum DamageType {

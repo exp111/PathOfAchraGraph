@@ -1,18 +1,17 @@
 import {BaseTrigger} from './trigger';
 
 export class Event {
-  //TODO: how to differentiate between Adjacent/NonAdjacent hit, dmg types
   /**
-   * @param trigger how this event is triggered
-   * @param effect what this event does
+   * @param triggers how this event is triggered (conditions are OR'ed)
+   * @param effects what this event does
    * @param text text description of the effect
    */
-  constructor(public trigger: BaseTrigger,
-              public effect: BaseTrigger,
+  constructor(public triggers: BaseTrigger[],
+              public effects: BaseTrigger[],
               public text: string) {
   }
 
   isTriggeredBy(trigger: Event) {
-    return this.trigger.isTriggeredBy(trigger.effect);
+    return this.triggers.some(t => trigger.effects.some(e => t.isTriggeredBy(e)));
   }
 }
