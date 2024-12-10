@@ -1,9 +1,10 @@
 import {ElementDefinition} from 'cytoscape';
 
-export function node(id: string, props: object = {}): ElementDefinition {
+export function node(id: string, color: string = "#666", props: object = {}): ElementDefinition {
   return {
     data: {
       id: id,
+      color: color,
       ...props
     }
   }

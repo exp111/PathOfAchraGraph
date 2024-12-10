@@ -30,8 +30,8 @@ export class AppComponent implements AfterViewInit {
         {
           selector: 'node',
           style: {
-            'background-color': '#666',
-            'label': 'data(id)'
+            'label': 'data(id)',
+            "background-color": "data(color)"
           }
         },
         {
@@ -76,7 +76,7 @@ export class AppComponent implements AfterViewInit {
     let powers = this.powers.filter(p => p).map(p => p!);
     for (let power of powers) {
       // push node
-      elements.push(node(power.name));
+      elements.push(node(power.name, power.getColor()));
       // push edges for each effect
       for (let effect of power.effects) {
         // check if any other power is affected from this effect

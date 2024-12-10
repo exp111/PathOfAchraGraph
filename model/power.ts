@@ -12,6 +12,7 @@ export enum PowerType {
   Astral,
   Psychic
 }
+
 export class Power {
   //TODO: cost
 
@@ -23,6 +24,22 @@ export class Power {
   constructor(public name: string, public type: PowerType, public effects: Event[]) {
     this.name = name;
     this.effects = effects;
+  }
+
+  getColor() {
+    //TODO: other colors
+    switch (this.type) {
+      case PowerType.Poison:
+        return "#0F0";
+      case PowerType.Fire:
+        return "#ffa500";
+      case PowerType.Ice:
+        return "#00F";
+      case PowerType.Blood:
+        return "#F00"
+      default:
+        return "#666";
+    }
   }
 
   toNode() {
