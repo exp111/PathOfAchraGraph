@@ -11,10 +11,6 @@ export class Power {
     this.effects = effects;
   }
 
-  isTriggeredBy(effect: Trigger) {
-    //TODO: isTriggeredBy
-  }
-
   toNode() {
     //TODO: toNode
   }

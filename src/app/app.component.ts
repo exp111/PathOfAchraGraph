@@ -3,7 +3,7 @@ import {RouterOutlet} from '@angular/router';
 import {Power} from '../../model/power';
 import {Powers} from '../../data/powers';
 import cytoscape, {ElementDefinition} from 'cytoscape';
-import {edge, node} from '../../model/cytoscape/Node';
+import {edge, node} from '../../model/cytoscape/node';
 import {Triggers} from '../../model/trigger';
 
 @Component({
