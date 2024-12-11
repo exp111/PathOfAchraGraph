@@ -27,16 +27,27 @@ export class Power {
   }
 
   getColor() {
-    //TODO: other colors
     switch (this.type) {
       case PowerType.Poison:
-        return "#0F0";
+        return "#9ABB00";
       case PowerType.Fire:
-        return "#ffa500";
+        return "#fc2b00";
       case PowerType.Ice:
-        return "#00F";
+        return "#90C9E9";
       case PowerType.Blood:
-        return "#F00"
+        return "#B20000"
+      case PowerType.Astral:
+        return "#994AB9";
+      case PowerType.Death:
+        return "#534700";
+      case PowerType.Life:
+        return "#008900";
+      case PowerType.Lightning:
+        return "#006AD8";
+      case PowerType.Martial:
+        return "#9B643A";
+      case PowerType.Psychic:
+        return "#BC8E29";
       default:
         return "#666";
     }
