@@ -1,3 +1,5 @@
+import {BeingDealtDamageTrigger} from './trigger/beingDealtDamageTrigger';
+
 export enum Triggers {
   Hit,
   Heal,
@@ -14,7 +16,9 @@ export enum Triggers {
   Summon,
   DivineIntervention,
   Entrance,
-  Learn
+  Learn,
+  BeingDealtDamage,
+  AllyBeingAttacked
 }
 
 export enum Status {
@@ -22,13 +26,16 @@ export enum Status {
   Sickness,
   Plague,
   Corrosion,
-  Snakeform
+  Snakeform,
+  Entangle,
+  Vineform
 }
 
 export enum DamageType {
   Blood,
   Poison,
-  Fire
+  Fire,
+  Pierce
 }
 
 export abstract class BaseTrigger {

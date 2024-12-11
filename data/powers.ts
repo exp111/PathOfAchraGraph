@@ -15,8 +15,11 @@ import {SummonTrigger} from '../model/events/trigger/summonTrigger';
 import {DivineInterventionTrigger} from '../model/events/trigger/divineInterventionTrigger';
 import {LearnTrigger} from '../model/events/trigger/learnTrigger';
 import {EntranceTrigger} from '../model/events/trigger/entranceTrigger';
+import {BeingDealtDamageTrigger} from '../model/events/trigger/beingDealtDamageTrigger';
+import {AllyBeingAttackedTrigger} from '../model/events/trigger/allyBeingAttackedTrigger';
 
 export const Powers: Power[] = [
+  // Blood
   new Power("Hemokinesis",
     PowerType.Blood,
     [
@@ -29,7 +32,7 @@ export const Powers: Power[] = [
         [new DealDamageTrigger(DamageType.Blood)],
         "30 * skill level blood damage")
     ]),
-
+  // Poison
   new Power("Toxokinesis",
     PowerType.Poison,
     [
@@ -133,5 +136,90 @@ export const Powers: Power[] = [
         [new ApplyStatusTrigger(Status.Sickness)],
         [new ApplyStatusTrigger(Status.Snakeform)],
         "2 * skill level"),
+    ]),
+  // Life
+  new Power("Vinakinesis",
+    PowerType.Life,
+    [
+      new Event(
+        [new AttackTrigger(), new HitTrigger()],
+        [new ApplyStatusTrigger(Status.Entangle)],
+        "5 entangle"),
+      new Event(
+        [new ApplyStatusTrigger(Status.Entangle)],
+        [new DealDamageTrigger(DamageType.Poison)],
+        "30 * skill level"
+      )
+    ]),
+  new Power("Piercing Vines",
+    PowerType.Life,
+    [
+      new Event(
+        [new GameTurnTrigger()],
+        [new ApplyStatusTrigger(Status.Entangle)],
+        "3 * skill level to 2 enemies in 3 range"),
+      new Event(
+        [new HitTrigger()],
+        [new DealDamageTrigger(DamageType.Blood)],
+        "if target has entangle, 5 * skill level * entangle stacks")
+    ]),
+  new Power("Master Entangle",
+    PowerType.Life,
+    [
+      new Event(
+        [new BeingDealtDamageTrigger()],
+        [new ApplyStatusTrigger(Status.Entangle, true), new ApplyStatusTrigger(Status.Entangle, false)],
+        "skill level"),
+      new Event(
+        [new BeingAttackedTrigger()],
+        [new DealDamageTrigger(DamageType.Pierce)],
+        "skill level * stacks entangle self"),
+    ]),
+  new Power("Invigoration",
+    PowerType.Life,
+    []),
+  new Power("Arboromancy",
+    PowerType.Life,
+    [
+      new Event(
+        [new AllyAttackTrigger()],
+        [new ApplyStatusTrigger(Status.Entangle)],
+        "skill level"),
+      new Event(
+        [new PrayerTrigger()],
+        [new SummonTrigger()],
+        "skill level"),
+    ]),
+  new Power("Grove Cult",
+    PowerType.Life,
+    [
+      new Event(
+        [new SummonTrigger()],
+        [new HealTrigger()],
+        "10 * skill level"),
+      new Event(
+        [new EntranceTrigger(), new LearnTrigger()],
+        [new SummonTrigger()],
+        "3 * skill level")
+    ]),
+  new Power("Overgrowth",
+    PowerType.Life,
+    [
+      new Event(
+        [new GameTurnTrigger(), new PrayerTrigger()],
+        [new SummonTrigger()],
+        "skill level"),
+      new Event(
+        [new AllyBeingAttackedTrigger()],
+        [new ApplyStatusTrigger(Status.Entangle)],
+        "skill level")
+    ]),
+  new Power("Vineform",
+    PowerType.Life,
+    [
+      new Event(
+        [new SummonTrigger()],
+        [new ApplyStatusTrigger(Status.Vineform, true)],
+        "2 * skill level")
     ]),
 ]
