@@ -76,7 +76,7 @@ export class AppComponent implements AfterViewInit {
     let powers = this.powers.filter(p => p).map(p => p!);
     for (let power of powers) {
       // push node
-      elements.push(node(power.name, power.getColor()));
+      elements.push(power.toNode());
       // push edges for each effect
       for (let effect of power.effects) {
         // check if any other power is affected from this effect

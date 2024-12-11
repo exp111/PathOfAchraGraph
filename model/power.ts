@@ -1,4 +1,6 @@
 import {Event} from './events/event';
+import {ElementDefinition} from 'cytoscape';
+import {node} from './cytoscape/node';
 
 export enum PowerType {
   Poison,
@@ -53,7 +55,7 @@ export class Power {
     }
   }
 
-  toNode() {
-    //TODO: toNode
+  toNode(): ElementDefinition {
+    return node(this.name, this.getColor())
   }
 }
