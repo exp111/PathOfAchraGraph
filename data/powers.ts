@@ -17,6 +17,8 @@ import {LearnTrigger} from '../model/events/trigger/learnTrigger';
 import {EntranceTrigger} from '../model/events/trigger/entranceTrigger';
 import {BeingDealtDamageTrigger} from '../model/events/trigger/beingDealtDamageTrigger';
 import {AllyBeingAttackedTrigger} from '../model/events/trigger/allyBeingAttackedTrigger';
+import {KillTriger} from '../model/events/trigger/killTriger';
+import {ExtraAttackTrigger} from '../model/events/trigger/extraAttackTrigger';
 
 export const Powers: Power[] = [
   // Blood
@@ -220,6 +222,106 @@ export const Powers: Power[] = [
       new Event(
         [new SummonTrigger()],
         [new ApplyStatusTrigger(Status.Vineform, true)],
+        "2 * skill level")
+    ]),
+  // Fire
+  new Power("Pyrokinesis",
+    PowerType.Fire,
+    [
+      new Event(
+        //TODO: 2 events here: one adjacent, one non adjacent
+        [new HitTrigger()],
+        [new DealDamageTrigger(DamageType.Fire)],
+        "30 * skill level"),
+      new Event(
+        [new KillTriger()],
+        [new DealDamageTrigger(DamageType.Fire)],
+        "30 * skill level")
+    ]),
+  new Power("Pyromancy",
+    PowerType.Fire,
+    [
+      new Event(
+        [new PrayerTrigger(), new StandStillTrigger()],
+        [new DealDamageTrigger(DamageType.Fire)],
+        "50 * skill level"),
+      new Event(
+        [new DealDamageTrigger(DamageType.Fire)],
+        [new ApplyStatusTrigger(Status.Scorch)],
+        "3 * skill level")
+    ]),
+  new Power("Shamsar",
+    PowerType.Fire,
+    [
+      new Event(
+        [new DealDamageTrigger(DamageType.Slash), new DealDamageTrigger(DamageType.Blunt)],
+        [new DealDamageTrigger(DamageType.Fire)],
+        "150 * skill level")
+    ]),
+  new Power("Fire Healing",
+    PowerType.Fire,
+    [
+      new Event(
+        [new HitTrigger()],
+        [new ApplyStatusTrigger(Status.Scorch)],
+        "2 * skill level"),
+      new Event(
+        [new DealDamageTrigger(DamageType.Fire)],
+        [new HealTrigger()],
+        "2 * skill level")
+    ]),
+  new Power("Frenzied Chant",
+    PowerType.Fire,
+    [
+      new Event(
+        [new GameTurnTrigger(), new PrayerTrigger()],
+        [new DealDamageTrigger(DamageType.Psychic, true),
+          new ApplyStatusTrigger(Status.Inflame, true),
+          new ExtraAttackTrigger()],
+        "25 psychic, 5 * skill level inflame, skill level attacks")
+    ]),
+  new Power("Master Scorch",
+    PowerType.Fire,
+    [
+      new Event(
+        [new BeingAttackedTrigger()],
+        [new DealDamageTrigger(DamageType.Fire), new ApplyStatusTrigger(Status.Scorch, true)],
+        "skill level")
+    ]),
+  new Power("Fire Familiar",
+    PowerType.Fire,
+    [
+      new Event(
+        [new EntranceTrigger(), new LearnTrigger()],
+        [new SummonTrigger()],
+        ""),
+      new Event(
+        [new ApplyStatusTrigger(Status.Inflame)],
+        [new HealTrigger(false)],
+        "20 * skill level dragon, +30 hit * skill level random ally"),
+      new Event(
+        [new AttackTrigger()],
+        [new ApplyStatusTrigger(Status.Inflame, true)],
+        "4 * skill level")
+    ]),
+  new Power("Flame Cult",
+    PowerType.Fire,
+    [
+      new Event(
+        [new SummonTrigger()],
+        [new DealDamageTrigger(DamageType.Fire)],
+        "40 * skill level"),
+      new Event(
+        [new EntranceTrigger(), new LearnTrigger()],
+        [new SummonTrigger()],
+        "3 * skill level")
+    ]),
+  new Power("Newtform",
+    PowerType.Fire,
+    [
+      new Event(
+        [new DealDamageTrigger(DamageType.Fire)],
+        [new ApplyStatusTrigger(Status.Newtform, true)],
         "2 * skill level")
     ]),
 ]

@@ -18,7 +18,9 @@ export enum Triggers {
   Entrance,
   Learn,
   BeingDealtDamage,
-  AllyBeingAttacked
+  AllyBeingAttacked,
+  Kill,
+  ExtraAttack
 }
 
 export enum Status {
@@ -28,14 +30,20 @@ export enum Status {
   Corrosion,
   Snakeform,
   Entangle,
-  Vineform
+  Vineform,
+  Scorch,
+  Inflame,
+  Newtform
 }
 
 export enum DamageType {
   Blood,
   Poison,
   Fire,
-  Pierce
+  Pierce,
+  Slash,
+  Blunt,
+  Psychic
 }
 
 export abstract class BaseTrigger {
