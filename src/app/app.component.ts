@@ -89,8 +89,10 @@ export class AppComponent implements AfterViewInit {
           for (let otherEffect of other.effects) {
             if (otherEffect.isTriggeredBy(effect)) {
               elements.push(edge(`${power.name}-${other.name}-${effect.getTriggerString()}-${effect.getEffectsString()}`, power.name, other.name, {
+                // show cause of trigger
                 start: effect.getEffectsString(),
-                end: otherEffect.getTriggerString()
+                // show effect of trigger
+                end: otherEffect.getEffectsString()
               }));
             }
           }
