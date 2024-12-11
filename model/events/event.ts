@@ -15,7 +15,14 @@ export class Event {
     return this.triggers.some(t => trigger.effects.some(e => t.isTriggeredBy(e)));
   }
 
+  getTriggerString() {
+    return this.triggers.map(e => e.toString()).join("||");
+  }
+
+  getEffectsString() {
+    return this.effects.map(e => e.toString()).join(",");
+  }
   toString() {
-    return `On ${this.triggers.map(e => e.toString()).join("||")} -> ${this.effects.map(e => e.toString()).join(",")}: ${this.text}`
+    return `On ${this.getTriggerString()} -> ${this.getEffectsString()}: ${this.text}`
   }
 }

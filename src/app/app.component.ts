@@ -38,8 +38,12 @@ export class AppComponent implements AfterViewInit {
           selector: 'edge',
           style: {
             "curve-style": "bezier",
-            'label': 'data(id)',
-            "target-arrow-shape": "triangle"
+            "source-label": "data(start)",
+            "target-label": "data(end)",
+            "source-text-offset": 100,
+            "target-text-offset": 100,
+            "target-arrow-shape": "triangle",
+            "target-arrow-color": "red",
           }
         }
       ]
@@ -84,7 +88,10 @@ export class AppComponent implements AfterViewInit {
           // check if the power has a effect that is triggered
           for (let otherEffect of other.effects) {
             if (otherEffect.isTriggeredBy(effect)) {
-              elements.push(edge(effect.toString(), power.name, other.name));
+              elements.push(edge(`${power.name}-${other.name}-${effect.getTriggerString()}-${effect.getEffectsString()}`, power.name, other.name, {
+                start: effect.getEffectsString(),
+                end: otherEffect.getTriggerString()
+              }));
             }
           }
         }

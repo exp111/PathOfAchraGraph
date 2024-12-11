@@ -17,4 +17,8 @@ export class DealDamageTrigger extends BaseTrigger {
       // if the trigger is always triggered it doesnt matter if we did the damage, else it is
       (!this.self || this.self == (<DealDamageTrigger>trigger).self);
   }
+
+  override toString(): string {
+    return `${super.toString()}(${DamageType[this.damageType]}${this.self?"-self" : ""})`;
+  }
 }

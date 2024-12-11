@@ -17,5 +17,9 @@ export class ApplyStatusTrigger extends BaseTrigger {
       // if the trigger is always triggered it doesnt matter if we did the damage, else it is
       (!this.self || this.self == (<ApplyStatusTrigger>trigger).self);
   }
+
+  override toString(): string {
+    return `${super.toString()}(${Status[this.status]}${this.self?"-self" : ""})`;
+  }
 }
 
