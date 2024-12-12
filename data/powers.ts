@@ -277,7 +277,7 @@ export const Powers: Power[] = [
         [new GameTurnTrigger(), new PrayerTrigger()],
         [new DealDamageTrigger(DamageType.Psychic, true),
           new ApplyStatusTrigger(Status.Inflame, true),
-          new ExtraAttackTrigger()],
+          new AttackTrigger(true)],
         "25 psychic, 5 * skill level inflame, skill level attacks")
     ]),
   new Power("Master Scorch",

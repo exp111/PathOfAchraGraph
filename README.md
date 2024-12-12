@@ -9,3 +9,4 @@
 - Tooltips with description of powers
 - Power images in power graph and power selection
 - Loop/circle detection
+- Add all powers
