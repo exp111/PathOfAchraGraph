@@ -7,6 +7,6 @@ export class AttackTrigger extends BaseTrigger {
    * @param extra is this an extra attack
    */
   constructor(public extra: boolean = false) {
-
+    super();
   }
 }
